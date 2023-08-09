@@ -15,7 +15,6 @@ metadata:
     - title: Slack
       url: https://join.slack.com/t/janus-idp/shared_invite/zt-1pxtehxom-fCFtF9rRe3vFqUiFFeAkmg
   annotations:
-    argocd/app-name: 'janus-idp'
     gitlab.com/project-id: '32015' # This must be in quotes and can be found under Settings --> General
 spec:
   type: website

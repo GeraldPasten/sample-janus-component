@@ -15,8 +15,8 @@ metadata:
     - title: Slack
       url: https://join.slack.com/t/janus-idp/shared_invite/zt-1pxtehxom-fCFtF9rRe3vFqUiFFeAkmg
   annotations:
-#    gitlab.com/project-id: "32015"
-#    gitlab.com/instance: gitlab.com
+    gitlab.com/project-id: "32015"
+    gitlab.com/instance: gitlab.com
 spec:
   type: website
   system: janus-idp

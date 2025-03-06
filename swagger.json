@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Swagger Apache Camel - Quarkus Para Clientes Banreservas",
+        "description": "Documentación API OpenAPI en Camel-Quarkus",
+        "version": "1.0"
+    },
+    "paths": {
+        "/integration/customer/consultation/api/v1/getCustomer": {
+            "post": {
+                "summary": "Procesa una solicitud POST para exponer el endpoint de clienteBanreservas",
+                "description": "Endpoint para consultar información de un cliente banreservas basado en identificación y filtros",
+                "operationId": "getCustomer",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "identification": {
+                                        "type": "object",
+                                        "properties": {
+                                            "identificationNumber": {
+                                                "type": "string",
+                                                "example": "0000001122"
+                                            },
+                                            "identificationType": {
+                                                "type": "string",
+                                                "example": "Cedula"
+                                            }
+                                        }
+                                    },
+                                    "filters": {
+                                        "type": "object",
+                                        "properties": {
+                                            "generalData": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "identification": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "addresses": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "phones": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "emails": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "relatedSystems": {
+                                                "type": "boolean",
+                                                "example": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Consulta exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "header": {
+                                            "type": "object",
+                                            "properties": {
+                                                "responseCode": {
+                                                    "type": "integer",
+                                                    "example": 200
+                                                },
+                                                "responseMessage": {
+                                                    "type": "string",
+                                                    "example": "Exitoso"
+                                                }
+                                            }
+                                        },
+                                        "body": {
+                                            "type": "object",
+                                            "example": "{ ... }"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Cliente Banreservas no registrado o no existe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "header": {
+                                            "type": "object",
+                                            "properties": {
+                                                "responseCode": {
+                                                    "type": "integer",
+                                                    "example": 204
+                                                },
+                                                "responseMessage": {
+                                                    "type": "string",
+                                                    "example": "No se ha encontrado información del cliente Banreservas"
+                                                }
+                                            }
+                                        },
+                                        "body": {
+                                            "type": "object",
+                                            "example": "null",
+                                            "nullable": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta debido a validaciones fallidas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "header": {
+                                            "type": "object",
+                                            "properties": {
+                                                "responseCode": {
+                                                    "type": "integer",
+                                                    "example": 400
+                                                },
+                                                "responseMessage": {
+                                                    "type": "string",
+                                                    "example": "Mensaje sobre las validaciones que no se pueden procesar por error al envio de la solicitud"
+                                                }
+                                            }
+                                        },
+                                        "body": {
+                                            "type": "object",
+                                            "nullable": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }, "components": {
+        "securitySchemes": {
+            "SecurityScheme": {
+                "type": "openIdConnect",
+                "description": "Authentication",
+                "openIdConnectUrl": "https://sso-stg.api.banreservas.com/realms/banreservas-partnerapi/.well-known/openid-configuration"
+            }
+        }
+    }
+}
